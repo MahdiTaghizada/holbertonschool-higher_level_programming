@@ -1,17 +1,19 @@
 #!/usr/bin/python3
-"""Defines an integer addition function."""
+"""A module to add two numbers"""
 
 
 def add_integer(a, b=98):
-    """Return the integer addition of a and b.
-
-    Float arguments are typecasted to ints before addition is performed.
-
-    Raises:
-        TypeError: If either of a or b is a non-integer and non-float.
-    """
-    if ((not isinstance(a, int) and not isinstance(a, float))):
+    """Adds two integers or floats (after casting to int)"""
+    if type(a) not in (int, float):
         raise TypeError("a must be an integer")
-    if ((not isinstance(b, int) and not isinstance(b, float))):
+    if type(b) not in (int, float):
         raise TypeError("b must be an integer")
-    return (int(a) + int(b))
+
+    # Handle NaN or infinity manually (since we can't import math)
+    if a != a or b != b:  # NaN check (NaN != NaN is always True)
+        raise OverflowError("cannot convert float NaN to integer")
+    if a == float('inf') or a == float('-inf') or \
+       b == float('inf') or b == float('-inf'):
+        raise OverflowError("cannot convert float infinity to integer")
+
+    return int(a) + int(b)
