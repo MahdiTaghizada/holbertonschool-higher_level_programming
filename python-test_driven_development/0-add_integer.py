@@ -1,20 +1,24 @@
 #!/usr/bin/python3
-"""A module to add two numbers"""
+"""This module defines a function that adds two integers.
+The function ensures the arguments are integers or floats,
+casts floats to integers before addition, and raises
+appropriate exceptions when needed.
+"""
 
 
 def add_integer(a, b=98):
     """Add two integers or floats and return the result as an integer.
 
     Args:
-        a (int or float): The first number.
-        b (int or float, optional): The second number. Defaults to 98.
+        a (int or float): first number
+        b (int or float, optional): second number (default = 98)
 
     Returns:
-        int: The integer sum of a and b.
+        int: the sum of a and b after casting to integers.
 
     Raises:
-        TypeError: If either a or b is not an int or float.
-        OverflowError: If a or b is NaN or infinity.
+        TypeError: if a or b are not integers or floats
+        OverflowError: if a or b are NaN or infinity
     """
     if type(a) not in (int, float):
         raise TypeError("a must be an integer")
@@ -27,10 +31,12 @@ def add_integer(a, b=98):
 
 
 def convert_to_int(num):
-    """Convert a float to int safely."""
+    """Convert a float to an int, checking for NaN or infinity."""
     if type(num) is float:
+        # check NaN (NaN != NaN)
         if num != num:
             raise OverflowError("cannot convert float NaN to integer")
+        # check infinity (+inf or -inf)
         if num == float("inf") or num == float("-inf"):
             raise OverflowError("cannot convert float infinity to integer")
         num = int(num)
