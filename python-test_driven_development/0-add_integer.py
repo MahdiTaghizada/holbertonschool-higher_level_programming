@@ -3,7 +3,6 @@
 
 
 def add_integer(a, b=98):
-    """Adds two numbers"""
     if type(a) not in (int, float):
         raise TypeError("a must be an integer")
     if type(b) not in (int, float):
@@ -15,9 +14,12 @@ def add_integer(a, b=98):
 
 
 def convert_to_int(num):
-    """Convert a float to int safely"""
     if type(num) is float:
-        if num != num or num == float("inf") or num == float("-inf"):
+        # NaN yoxlaması
+        if num != num:
             raise OverflowError("cannot convert float NaN to integer")
+        # Sonsuzluq yoxlaması
+        if num == float("inf") or num == float("-inf"):
+            raise OverflowError("cannot convert float infinity to integer")
         num = int(num)
     return num
