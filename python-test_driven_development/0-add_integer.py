@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """A module to add two numbers"""
 
-import math
-
 
 def add_integer(a, b=98):
     """Adds two numbers"""
@@ -19,8 +17,7 @@ def add_integer(a, b=98):
 def convert_to_int(num):
     """Convert a float to int safely"""
     if type(num) is float:
-        # check for NaN or Infinity
-        if math.isnan(num) or math.isinf(num):
+        if num != num or num == float("inf") or num == float("-inf"):
             raise OverflowError("cannot convert float NaN to integer")
         num = int(num)
     return num
