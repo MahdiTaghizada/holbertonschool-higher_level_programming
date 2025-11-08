@@ -1,49 +1,48 @@
 #!/usr/bin/python3
-"""Define a class Square."""
+"""This module contains a Square class."""
 
 
-class Square:
-    """Represent a square."""
-    def __init__(self, size=0):
-        """Initialize a new Square."""
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
-        if size < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = size
+class Square():
+    """A class that represents a square."""
+
+    def __init__(self, size=0, position=(0, 0)):
+        """Initialize the class"""
+        self.size = size
+        self.position = position
+
+    def area(self):
+        """Function that computes the area of the square"""
+        return (self.__size * self.__size)
 
     @property
     def size(self):
-        """Get the current size of the square."""
-        return self.__size
+        """Getter for size"""
+        return (self.__size)
 
     @size.setter
-    def size(self, value):
-        """Set the size of the square."""
-        if not isinstance(value, int):
+    def size(self, size):
+        """Setter for size"""
+        if (not isinstance(size, int)):
             raise TypeError("size must be an integer")
-        if value < 0:
+        if (size < 0):
             raise ValueError("size must be >= 0")
-        self.__size = value
-
-    def area(self):
-        """ Return the area of the square."""
-        return self.__size ** 2
+        self.__size = size
 
     def my_print(self):
-        """Print the square with the charecter #."""
-        i = 0
-        if self.__size == 0:
-            print("")
-        else:
-            while i < self.__size:
-                print("#" * self.__size)
-                i = i + 1
+        """Prints square"""
+        if (self.size == 0):
+            print()
+            return
+        for i in range(self.position[1]):
+            print()
+        for i in range(self.size):
+            print(" " * self.position[0], end="")
+            print("#" * self.size)
 
     @property
     def position(self):
-        """Get the current position of the square."""
-        return self.__position
+        """Getter for position"""
+        return (self.__position)
 
     @position.setter
     def position(self, p):
