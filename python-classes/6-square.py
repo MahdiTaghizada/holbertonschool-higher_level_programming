@@ -32,8 +32,25 @@ class Square:
 
     def my_print(self):
         """Print the square with the charecter #."""
+        i = 0
         if self.__size == 0:
             print("")
         else:
-            for i in range (self.__size):
+            while i < self.__size:
                 print("#" * self.__size)
+                i = i + 1
+
+    @property
+    def position(self):
+        """Get the current position of the square."""
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        """Set the position of the square."""
+        if (not isinstance(value, tuple) or
+            len(value) != 2 or
+            not all(isinstance(num, int) for num in value) or
+            not all(num >= 0 for num in value)):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = value
