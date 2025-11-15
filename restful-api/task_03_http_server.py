@@ -49,7 +49,7 @@ class HTTPHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write('Not Found'.encode())
+            self.wfile.write('Endpoint not found'.encode())
 
 if __name__ == '__main__':
     """Server initialization"""
