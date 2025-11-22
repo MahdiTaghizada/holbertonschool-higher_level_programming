@@ -1,25 +1,17 @@
 #!/usr/bin/python3
-"""Module for Selecting cities"""
+# Lists all cities of the database hbtn_0e_4_usa, ordered by city id.
+# Usage: ./4-cities_by_state.py <mysql username> \
+#                               <mysql password> \
+#                               <database name>
+import sys
+import MySQLdb
 
-if __name__ == '__main__':
-    from sys import argv
-    import MySQLdb
-
-    db = MySQLdb.connect(
-        user=argv[1],
-        password=argv[2],
-        database=argv[3]
-    )
-    cursor = db.cursor()
-
-    cursor.execute('SELECT c.id, c.name, s.name \
-                    FROM cities AS c \
-                    INNER JOIN states AS s ON s.id = c.state_id ')
-
-    for state in cursor.fetchall():
-        print(state)
-
-    if cursor:
-        cursor.close()
-    if db:
-        db.close()
+if __name__ == "__main__":
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+    c = db.cursor()
+    c.execute("SELECT `c`.`id`, `c`.`name`, `s`.`name` \
+                 FROM `cities` as `c` \
+                INNER JOIN `states` as `s` \
+                   ON `c`.`state_id` = `s`.`id` \
+                ORDER BY `c`.`id`")
+    [print(city) for city in c.fetchall()]
