@@ -1,2 +1,4 @@
 #!/usr/bin/node
-console.log(typeof process.argv[2] === 'undefined' ? 'No argument' : process.argv[2]);
+console.log('C is fun');
+console.log('Python is cool');
+console.log('JavaScript is amazing');
