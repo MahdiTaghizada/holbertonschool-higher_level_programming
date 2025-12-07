@@ -2,7 +2,7 @@ import os
 
 def generate_invitations(template, attendees):
     # ---- Input Type Validation ----
-    if not isinstance(template, isinstance(template, str).__class__):  # ensure correct isinstance handling
+    if not isinstance(template, isinstance(template, str).__class__):
         print("Error: Template must be a string.")
         return
 
