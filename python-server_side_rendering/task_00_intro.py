@@ -1,8 +1,6 @@
-import os
-
 def generate_invitations(template, attendees):
     # ---- Input Type Validation ----
-    if not isinstance(template, isinstance(template, str).__class__):
+    if not isinstance(template, str):
         print("Error: Template must be a string.")
         return
 
@@ -23,7 +21,7 @@ def generate_invitations(template, attendees):
     # ---- Process and Generate Files ----
     for index, attendee in enumerate(attendees, start=1):
 
-        # Replace placeholders, use "N/A" if key missing or value None
+        # Replace placeholders, use "N/A" if key missing or None
         processed = template
         for key in ["name", "event_title", "event_date", "event_location"]:
             value = attendee.get(key)
@@ -31,14 +29,11 @@ def generate_invitations(template, attendees):
                 value = "N/A"
             processed = processed.replace("{" + key + "}", value)
 
-        # Output filename
         filename = f"output_{index}.txt"
 
-        # Write the file
         try:
             with open(filename, "w") as f:
                 f.write(processed)
-
         except Exception as e:
             print(f"Error writing file {filename}: {e}")
             return
